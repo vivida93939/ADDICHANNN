@@ -2,7 +2,8 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Efectivo Inmediato | Transforma tu Cupo</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
@@ -19,50 +20,116 @@
                             50: '#eef6ff',
                             100: '#d9ebff',
                             400: '#3385ff',
-                            500: '#005af5', // Azul vibrante estilo app
+                            500: '#005af5',
                             600: '#004cd6',
                             900: '#002266',
                         },
-                        accent: '#111827' // Texto oscuro
+                        accent: '#111827'
                     }
                 }
             }
         }
     </script>
     <style>
-        /* Transiciones suaves para la encuesta paso a paso */
+        /* Estilos base */
+        * {
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: #f9fafb;
+            color: #1f2937;
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        /* Transiciones para la encuesta */
         .step-container {
+            -webkit-transition: all 0.3s ease-in-out;
+            -o-transition: all 0.3s ease-in-out;
             transition: all 0.3s ease-in-out;
         }
+        
         .hidden-step {
             display: none !important;
             opacity: 0;
+            visibility: hidden;
+            height: 0;
+            overflow: hidden;
         }
+        
         .active-step {
             display: block !important;
             opacity: 1;
+            visibility: visible;
+            height: auto;
+            -webkit-animation: fadeIn 0.5s ease-in-out;
             animation: fadeIn 0.5s ease-in-out;
         }
+        
+        @-webkit-keyframes fadeIn {
+            from { opacity: 0; -webkit-transform: translateY(10px); transform: translateY(10px); }
+            to { opacity: 1; -webkit-transform: translateY(0); transform: translateY(0); }
+        }
+        
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+            from { opacity: 0; -webkit-transform: translateY(10px); transform: translateY(10px); }
+            to { opacity: 1; -webkit-transform: translateY(0); transform: translateY(0); }
+        }
+        
+        /* Botones mejorados para touch */
+        .survey-btn {
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            touch-action: manipulation;
+        }
+        
+        .survey-btn:active {
+            -webkit-transform: scale(0.97);
+            -ms-transform: scale(0.97);
+            transform: scale(0.97);
+        }
+        
+        /* Inputs mejorados */
+        input {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+        }
+        
+        /* Scroll suave */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Imágenes responsivas */
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
         }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800 font-sans antialiased">
+<body>
 
-    <!-- Navbar (Ya no es sticky) -->
+    <!-- Navbar -->
     <nav class="bg-white border-b border-gray-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-center h-20 items-center">
                 <div class="flex-shrink-0 flex items-center">
-                    <img src="https://i.postimg.cc/VLX9pLhG/3203c230-89ac-46cf-8164-477674486732.png" alt="Logo Addi Cupo" class="h-12 md:h-14 object-contain">
+                    <img src="https://i.postimg.cc/VLX9pLhG/3203c230-89ac-46cf-8164-477674486732.png" alt="Logo Addi Cupo" class="h-12 md:h-14 object-contain" loading="lazy">
                 </div>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section con la Promesa Fuerte -->
+    <!-- Hero Section -->
     <section class="bg-white pt-10 pb-12 relative overflow-hidden flex flex-col items-center text-center">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             
@@ -74,12 +141,10 @@
                 Cambiamos tu cupo Addi <strong class="text-gray-900">desde $200.000 hasta 15 millones de pesos</strong> por dinero directo a tu cuenta bancaria a una tasa de <strong class="text-brand-500">1.1% (más bajo que el interés de los bancos)</strong>.
             </p>
             
-            <!-- Imagen Destacada Centrada -->
             <div class="w-full max-w-lg mx-auto mb-12">
-                <img src="https://i.postimg.cc/W3Gsq1wy/image.png" alt="Cupo en efectivo Addi" class="w-full h-auto rounded-[2rem] shadow-lg border border-gray-100 object-cover" />
+                <img src="https://i.postimg.cc/W3Gsq1wy/image.png" alt="Cupo en efectivo Addi" class="w-full h-auto rounded-[2rem] shadow-lg border border-gray-100 object-cover" loading="lazy" />
             </div>
             
-            <!-- Narración / Storytelling y Escasez (Neuromarketing) -->
             <div class="bg-gray-50 border border-gray-200 rounded-[2rem] p-6 md:p-10 mb-10 shadow-sm max-w-4xl mx-auto text-lg md:text-xl text-gray-700 leading-relaxed space-y-5 text-center">
                 <p>
                     ¿Sabías que miles de colombianos terminan reportados en <strong>Datacrédito o Centrales de Riesgo</strong> por hacer compras innecesarias? Por la presión de usar su cupo en tiendas aliadas, adquieren deudas de ropa o lujos que no les generan ningún beneficio.
@@ -96,13 +161,12 @@
         </div>
     </section>
 
-    <!-- Sección de Historia / Checklist Verde -->
+    <!-- Sección Checklist -->
     <section id="historia" class="py-12 bg-white">
         <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 class="text-3xl md:text-4xl font-black text-gray-900 mb-10 text-center tracking-tight leading-tight">La forma más inteligente de tener liquidez</h2>
             
             <div class="space-y-8 bg-gray-50 p-6 md:p-10 rounded-[2rem] border border-gray-100 text-center md:text-left">
-                <!-- Checklist 1 -->
                 <div class="flex flex-col md:flex-row items-center md:items-start gap-4">
                     <i class="fas fa-check-circle text-green-500 text-4xl flex-shrink-0"></i>
                     <div>
@@ -111,7 +175,6 @@
                     </div>
                 </div>
                 
-                <!-- Checklist 2 -->
                 <div class="flex flex-col md:flex-row items-center md:items-start gap-4">
                     <i class="fas fa-check-circle text-green-500 text-4xl flex-shrink-0"></i>
                     <div>
@@ -120,7 +183,6 @@
                     </div>
                 </div>
                 
-                <!-- Checklist 3 -->
                 <div class="flex flex-col md:flex-row items-center md:items-start gap-4">
                     <i class="fas fa-check-circle text-green-500 text-4xl flex-shrink-0"></i>
                     <div>
@@ -132,7 +194,7 @@
         </div>
     </section>
 
-    <!-- Sección Interactiva: Encuesta y Autoridad -->
+    <!-- Sección Encuesta -->
     <section id="encuesta" class="py-16 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12">
@@ -144,7 +206,6 @@
                 </p>
                 
                 <div class="mt-10 flex flex-col gap-6 bg-brand-50 p-6 md:p-8 rounded-[2rem] border-2 border-brand-100 max-w-4xl mx-auto shadow-sm">
-                    <!-- Trato Justo -->
                     <div class="flex flex-col md:flex-row items-center md:items-start gap-5">
                         <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center flex-shrink-0 shadow-md border border-gray-100">
                             <i class="fas fa-headset text-3xl text-brand-500"></i>
@@ -154,7 +215,6 @@
                         </p>
                     </div>
                     
-                    <!-- Seguridad Anti-Fraude -->
                     <div class="flex flex-col md:flex-row items-center md:items-start gap-5 pt-6 border-t-2 border-brand-200/60 mt-2">
                         <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center flex-shrink-0 shadow-md border border-gray-100">
                             <i class="fas fa-shield-alt text-3xl text-green-500"></i>
@@ -168,40 +228,38 @@
 
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
                 
-                <!-- Columna de la Encuesta -->
+                <!-- Columna Encuesta -->
                 <div class="lg:col-span-2 bg-brand-500 rounded-[2rem] shadow-xl p-6 md:p-10 relative overflow-hidden text-white">
                     
-                    <!-- Elementos decorativos -->
                     <div class="absolute top-0 right-0 -mt-20 -mr-20 w-64 h-64 bg-brand-400 rounded-full opacity-50 blur-3xl"></div>
                     <div class="absolute bottom-0 left-0 -mb-20 -ml-20 w-64 h-64 bg-brand-600 rounded-full opacity-50 blur-3xl"></div>
 
-                    <!-- Barra de progreso (5 pasos = 20% cada uno) -->
                     <div class="w-full bg-brand-600/50 rounded-full h-3 mb-10 relative z-10">
                         <div id="progress-bar" class="bg-white h-3 rounded-full transition-all duration-500 ease-out" style="width: 20%"></div>
                     </div>
 
                     <div id="survey-container" class="relative z-10">
                         
-                        <!-- Paso 1: Disponibilidad de cupo -->
+                        <!-- Paso 1 -->
                         <div id="step-1" class="step-container active-step text-center">
                             <h3 class="text-2xl md:text-3xl font-extrabold mb-8 tracking-tight leading-snug">1. ¿Actualmente tienes un cupo disponible?</h3>
                             <div class="flex flex-col gap-4 max-w-md mx-auto">
-                                <button onclick="selectOption('has_cupo', 'A. Sí, tengo cupo disponible', 2)" class="survey-btn p-5 bg-white/10 hover:bg-white text-white hover:text-brand-900 border-2 border-white/20 hover:border-white rounded-xl transition-all font-bold text-lg text-center backdrop-blur-sm">
+                                <button class="survey-btn p-5 bg-white/10 hover:bg-white text-white hover:text-brand-900 border-2 border-white/20 hover:border-white rounded-xl transition-all font-bold text-lg text-center backdrop-blur-sm" data-key="has_cupo" data-value="A. Sí, tengo cupo disponible" data-next="2">
                                     A. Sí, tengo cupo disponible
                                 </button>
-                                <button onclick="selectOption('has_cupo', 'B. No tengo cupo actualmente', 2)" class="survey-btn p-5 bg-white/10 hover:bg-white text-white hover:text-brand-900 border-2 border-white/20 hover:border-white rounded-xl transition-all font-bold text-lg text-center backdrop-blur-sm">
+                                <button class="survey-btn p-5 bg-white/10 hover:bg-white text-white hover:text-brand-900 border-2 border-white/20 hover:border-white rounded-xl transition-all font-bold text-lg text-center backdrop-blur-sm" data-key="has_cupo" data-value="B. No tengo cupo actualmente" data-next="2">
                                     B. No tengo cupo actualmente
                                 </button>
-                                <button onclick="selectOption('has_cupo', 'C. No recuerdo', 2)" class="survey-btn p-5 bg-white/10 hover:bg-white text-white hover:text-brand-900 border-2 border-white/20 hover:border-white rounded-xl transition-all font-bold text-lg text-center backdrop-blur-sm">
+                                <button class="survey-btn p-5 bg-white/10 hover:bg-white text-white hover:text-brand-900 border-2 border-white/20 hover:border-white rounded-xl transition-all font-bold text-lg text-center backdrop-blur-sm" data-key="has_cupo" data-value="C. No recuerdo" data-next="2">
                                     C. No recuerdo
                                 </button>
-                                <button onclick="selectOption('has_cupo', 'D. Me encuentro reportado en datacredito', 'rejected')" class="survey-btn p-5 bg-white/10 hover:bg-white text-white hover:text-brand-900 border-2 border-white/20 hover:border-white rounded-xl transition-all font-bold text-lg text-center backdrop-blur-sm">
+                                <button class="survey-btn p-5 bg-white/10 hover:bg-white text-white hover:text-brand-900 border-2 border-white/20 hover:border-white rounded-xl transition-all font-bold text-lg text-center backdrop-blur-sm" data-key="has_cupo" data-value="D. Me encuentro reportado en datacredito" data-next="rejected">
                                     D. Me encuentro reportado en Datacrédito
                                 </button>
                             </div>
                         </div>
 
-                        <!-- Pantalla de Rechazo Empático (Solo para reportados) -->
+                        <!-- Rejected -->
                         <div id="step-rejected" class="step-container hidden-step text-center py-4">
                             <div class="w-20 h-20 bg-brand-400/20 rounded-full flex items-center justify-center mx-auto mb-6 text-brand-100 shadow-inner">
                                 <i class="fas fa-hand-holding-heart text-4xl"></i>
@@ -215,72 +273,79 @@
                                     Sabemos lo importante que es tener liquidez para ti, por eso <strong>próximamente estaremos lanzando una campaña exclusiva para personas reportadas en centrales de riesgo.</strong> ¡Mantente muy atento a nuestras novedades!
                                 </p>
                             </div>
-                            <button onclick="goToStep(1)" class="mt-4 text-white/80 hover:text-white font-bold text-base flex items-center justify-center gap-2 w-full transition-colors"><i class="fas fa-arrow-left"></i> Volver al inicio</button>
+                            <button onclick="goToStep(1)" class="mt-4 text-white/80 hover:text-white font-bold text-base flex items-center justify-center gap-2 w-full transition-colors">
+                                <i class="fas fa-arrow-left"></i> Volver al inicio
+                            </button>
                         </div>
 
-                        <!-- Paso 2: Monto disponible -->
+                        <!-- Paso 2 -->
                         <div id="step-2" class="step-container hidden-step text-center">
                             <h3 id="step-2-title" class="text-2xl md:text-3xl font-extrabold mb-8 tracking-tight leading-snug">2. ¿Cuánto tienes disponible actualmente en tu cupo?</h3>
                             <div class="flex flex-col gap-4 max-w-md mx-auto">
-                                <button onclick="selectOption('amount', 'A. De $600.000 a $1.200.000', 3)" class="survey-btn p-5 bg-white/10 hover:bg-white text-white hover:text-brand-900 border-2 border-white/20 hover:border-white rounded-xl transition-all font-bold text-lg text-center backdrop-blur-sm">
+                                <button class="survey-btn p-5 bg-white/10 hover:bg-white text-white hover:text-brand-900 border-2 border-white/20 hover:border-white rounded-xl transition-all font-bold text-lg text-center backdrop-blur-sm" data-key="amount" data-value="A. De $600.000 a $1.200.000" data-next="3">
                                     A. De $600.000 a $1.200.000
                                 </button>
-                                <button onclick="selectOption('amount', 'B. De $1.200.000 a $3.000.000', 3)" class="survey-btn p-5 bg-white/10 hover:bg-white text-white hover:text-brand-900 border-2 border-white/20 hover:border-white rounded-xl transition-all font-bold text-lg text-center backdrop-blur-sm">
+                                <button class="survey-btn p-5 bg-white/10 hover:bg-white text-white hover:text-brand-900 border-2 border-white/20 hover:border-white rounded-xl transition-all font-bold text-lg text-center backdrop-blur-sm" data-key="amount" data-value="B. De $1.200.000 a $3.000.000" data-next="3">
                                     B. De $1.200.000 a $3.000.000
                                 </button>
-                                <button onclick="selectOption('amount', 'C. De $3.000.000 a $7.000.000', 3)" class="survey-btn p-5 bg-white/10 hover:bg-white text-white hover:text-brand-900 border-2 border-white/20 hover:border-white rounded-xl transition-all font-bold text-lg text-center backdrop-blur-sm">
+                                <button class="survey-btn p-5 bg-white/10 hover:bg-white text-white hover:text-brand-900 border-2 border-white/20 hover:border-white rounded-xl transition-all font-bold text-lg text-center backdrop-blur-sm" data-key="amount" data-value="C. De $3.000.000 a $7.000.000" data-next="3">
                                     C. De $3.000.000 a $7.000.000
                                 </button>
-                                <button onclick="selectOption('amount', 'D. De $7.000.000 a $15.000.000', 3)" class="survey-btn p-5 bg-white/10 hover:bg-white text-white hover:text-brand-900 border-2 border-white/20 hover:border-white rounded-xl transition-all font-bold text-lg text-center backdrop-blur-sm">
+                                <button class="survey-btn p-5 bg-white/10 hover:bg-white text-white hover:text-brand-900 border-2 border-white/20 hover:border-white rounded-xl transition-all font-bold text-lg text-center backdrop-blur-sm" data-key="amount" data-value="D. De $7.000.000 a $15.000.000" data-next="3">
                                     D. De $7.000.000 a $15.000.000
                                 </button>
                             </div>
-                            <button onclick="goToStep(1)" class="mt-8 text-white/80 hover:text-white font-bold text-base flex items-center justify-center gap-2 w-full"><i class="fas fa-arrow-left"></i> Volver al paso anterior</button>
+                            <button onclick="goToStep(1)" class="mt-8 text-white/80 hover:text-white font-bold text-base flex items-center justify-center gap-2 w-full">
+                                <i class="fas fa-arrow-left"></i> Volver al paso anterior
+                            </button>
                         </div>
 
-                        <!-- Paso 3: Motivo -->
+                        <!-- Paso 3 -->
                         <div id="step-3" class="step-container hidden-step text-center">
                             <h3 class="text-2xl md:text-3xl font-extrabold mb-8 tracking-tight leading-snug">3. ¿Para qué necesitas el efectivo?</h3>
                             <div class="flex flex-col gap-4 max-w-md mx-auto">
-                                <button onclick="selectOption('purpose', 'A. Inversiones', 4)" class="survey-btn p-5 bg-white/10 hover:bg-white text-white hover:text-brand-900 border-2 border-white/20 hover:border-white rounded-xl transition-all font-bold text-lg text-center backdrop-blur-sm">
+                                <button class="survey-btn p-5 bg-white/10 hover:bg-white text-white hover:text-brand-900 border-2 border-white/20 hover:border-white rounded-xl transition-all font-bold text-lg text-center backdrop-blur-sm" data-key="purpose" data-value="A. Inversiones" data-next="4">
                                     A. Inversiones
                                 </button>
-                                <button onclick="selectOption('purpose', 'B. Pagar deudas', 4)" class="survey-btn p-5 bg-white/10 hover:bg-white text-white hover:text-brand-900 border-2 border-white/20 hover:border-white rounded-xl transition-all font-bold text-lg text-center backdrop-blur-sm">
+                                <button class="survey-btn p-5 bg-white/10 hover:bg-white text-white hover:text-brand-900 border-2 border-white/20 hover:border-white rounded-xl transition-all font-bold text-lg text-center backdrop-blur-sm" data-key="purpose" data-value="B. Pagar deudas" data-next="4">
                                     B. Pagar deudas
                                 </button>
-                                <button onclick="selectOption('purpose', 'C. Urgencias', 4)" class="survey-btn p-5 bg-white/10 hover:bg-white text-white hover:text-brand-900 border-2 border-white/20 hover:border-white rounded-xl transition-all font-bold text-lg text-center backdrop-blur-sm">
+                                <button class="survey-btn p-5 bg-white/10 hover:bg-white text-white hover:text-brand-900 border-2 border-white/20 hover:border-white rounded-xl transition-all font-bold text-lg text-center backdrop-blur-sm" data-key="purpose" data-value="C. Urgencias" data-next="4">
                                     C. Urgencias
                                 </button>
-                                <button onclick="selectOption('purpose', 'D. Otros', 4)" class="survey-btn p-5 bg-white/10 hover:bg-white text-white hover:text-brand-900 border-2 border-white/20 hover:border-white rounded-xl transition-all font-bold text-lg text-center backdrop-blur-sm">
+                                <button class="survey-btn p-5 bg-white/10 hover:bg-white text-white hover:text-brand-900 border-2 border-white/20 hover:border-white rounded-xl transition-all font-bold text-lg text-center backdrop-blur-sm" data-key="purpose" data-value="D. Otros" data-next="4">
                                     D. Otros
                                 </button>
                             </div>
-                            <button onclick="goToStep(2)" class="mt-8 text-white/80 hover:text-white font-bold text-base flex items-center justify-center gap-2 w-full"><i class="fas fa-arrow-left"></i> Volver al paso anterior</button>
+                            <button onclick="goToStep(2)" class="mt-8 text-white/80 hover:text-white font-bold text-base flex items-center justify-center gap-2 w-full">
+                                <i class="fas fa-arrow-left"></i> Volver al paso anterior
+                            </button>
                         </div>
 
-                        <!-- Paso 4: Banco -->
+                        <!-- Paso 4 -->
                         <div id="step-4" class="step-container hidden-step text-center">
                             <h3 class="text-2xl md:text-3xl font-extrabold mb-8 tracking-tight leading-snug">4. ¿A qué banco deseas hacer la transferencia?</h3>
                             <div class="flex flex-col gap-4 max-w-md mx-auto">
-                                <button onclick="selectOption('bank', 'A. Bancolombia', 5)" class="survey-btn p-5 bg-white/10 hover:bg-white text-white hover:text-brand-900 border-2 border-white/20 hover:border-white rounded-xl transition-all font-bold text-lg text-center backdrop-blur-sm">
+                                <button class="survey-btn p-5 bg-white/10 hover:bg-white text-white hover:text-brand-900 border-2 border-white/20 hover:border-white rounded-xl transition-all font-bold text-lg text-center backdrop-blur-sm" data-key="bank" data-value="A. Bancolombia" data-next="5">
                                     A. Bancolombia
                                 </button>
-                                <button onclick="selectOption('bank', 'B. Nequi / Daviplata', 5)" class="survey-btn p-5 bg-white/10 hover:bg-white text-white hover:text-brand-900 border-2 border-white/20 hover:border-white rounded-xl transition-all font-bold text-lg text-center backdrop-blur-sm">
+                                <button class="survey-btn p-5 bg-white/10 hover:bg-white text-white hover:text-brand-900 border-2 border-white/20 hover:border-white rounded-xl transition-all font-bold text-lg text-center backdrop-blur-sm" data-key="bank" data-value="B. Nequi / Daviplata" data-next="5">
                                     B. Nequi / Daviplata
                                 </button>
-                                <button onclick="selectOption('bank', 'C. Davivienda', 5)" class="survey-btn p-5 bg-white/10 hover:bg-white text-white hover:text-brand-900 border-2 border-white/20 hover:border-white rounded-xl transition-all font-bold text-lg text-center backdrop-blur-sm">
+                                <button class="survey-btn p-5 bg-white/10 hover:bg-white text-white hover:text-brand-900 border-2 border-white/20 hover:border-white rounded-xl transition-all font-bold text-lg text-center backdrop-blur-sm" data-key="bank" data-value="C. Davivienda" data-next="5">
                                     C. Davivienda
                                 </button>
-                                <button onclick="selectOption('bank', 'D. Otro banco', 5)" class="survey-btn p-5 bg-white/10 hover:bg-white text-white hover:text-brand-900 border-2 border-white/20 hover:border-white rounded-xl transition-all font-bold text-lg text-center backdrop-blur-sm">
+                                <button class="survey-btn p-5 bg-white/10 hover:bg-white text-white hover:text-brand-900 border-2 border-white/20 hover:border-white rounded-xl transition-all font-bold text-lg text-center backdrop-blur-sm" data-key="bank" data-value="D. Otro banco" data-next="5">
                                     D. Otro banco
                                 </button>
                             </div>
-                            <button onclick="goToStep(3)" class="mt-8 text-white/80 hover:text-white font-bold text-base flex items-center justify-center gap-2 w-full"><i class="fas fa-arrow-left"></i> Volver al paso anterior</button>
+                            <button onclick="goToStep(3)" class="mt-8 text-white/80 hover:text-white font-bold text-base flex items-center justify-center gap-2 w-full">
+                                <i class="fas fa-arrow-left"></i> Volver al paso anterior
+                            </button>
                         </div>
 
-                        <!-- Paso 5: Final / Datos -->
+                        <!-- Paso 5 -->
                         <div id="step-5" class="step-container hidden-step text-center py-4">
-                            
                             <h3 id="step-5-title" class="text-3xl md:text-4xl font-extrabold mb-4 tracking-tight">5. Ingresa tus datos para continuar:</h3>
                             <p id="step-5-desc" class="text-white/90 mb-6 text-lg font-medium">Completa estos últimos datos para generar tu solicitud y pasarte con tu asesor por WhatsApp.</p>
                             
@@ -298,30 +363,30 @@
                                 <input type="text" id="userCC" placeholder="Cédula de Ciudadanía (CC)" class="w-full p-4 border-none rounded-xl text-gray-900 text-lg font-bold placeholder-gray-400 focus:ring-4 focus:ring-white/30 focus:outline-none shadow-inner">
                             </div>
                             
-                            <button onclick="submitToWhatsApp()" class="w-full max-w-md mx-auto bg-gray-900 hover:bg-gray-800 text-white font-extrabold py-5 px-6 rounded-xl shadow-xl transition-transform hover:scale-105 flex items-center justify-center gap-3 text-lg">
+                            <button id="whatsapp-btn" class="w-full max-w-md mx-auto bg-gray-900 hover:bg-gray-800 text-white font-extrabold py-5 px-6 rounded-xl shadow-xl transition-transform hover:scale-105 flex items-center justify-center gap-3 text-lg">
                                 <i class="fab fa-whatsapp text-2xl text-green-400"></i> Hablar con mi asesor
                             </button>
                             
                             <p id="error-msg" class="text-red-200 mt-3 hidden text-sm font-bold bg-red-900/50 p-2 rounded-lg max-w-md mx-auto">Por favor, completa todos los campos requeridos.</p>
                             
-                            <button onclick="goBackFrom5()" class="mt-8 text-white/80 hover:text-white font-bold text-base flex items-center justify-center gap-2 w-full"><i class="fas fa-arrow-left"></i> Volver al paso anterior</button>
+                            <button onclick="goBackFrom5()" class="mt-8 text-white/80 hover:text-white font-bold text-base flex items-center justify-center gap-2 w-full">
+                                <i class="fas fa-arrow-left"></i> Volver al paso anterior
+                            </button>
                         </div>
                     </div>
                 </div>
 
-                <!-- Columna de Autoridad -->
+                <!-- Columna Asesor -->
                 <div class="lg:col-span-1">
                     <div class="bg-gray-50 rounded-[2rem] p-6 text-center h-full flex flex-col justify-center relative border border-gray-100 shadow-sm">
-                        
                         <span class="bg-brand-100 text-brand-600 text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-widest mb-6 inline-block mx-auto">Asignado a ti</span>
                         
-                        <!-- Foto del Asesor -->
                         <div class="relative w-28 h-28 mx-auto mb-5">
-                            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-1.2.1&auto=format&fit=crop&w=256&q=80" alt="Asesor Financiero" class="w-28 h-28 rounded-full border-4 border-white object-cover shadow-md">
+                            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-1.2.1&auto=format&fit=crop&w=256&q=80" alt="Asesor Financiero" class="w-28 h-28 rounded-full border-4 border-white object-cover shadow-md" loading="lazy">
                             <div class="absolute bottom-1 right-1 w-5 h-5 bg-green-500 border-2 border-white rounded-full"></div>
                         </div>
                         
-                        <h5 class="text-xl font-extrabold text-gray-900 mb-1" id="advisor-name">Carlos Mendoza</h5>
+                        <h5 class="text-xl font-extrabold text-gray-900 mb-1">Carlos Mendoza</h5>
                         <p class="text-gray-500 text-sm font-bold mb-6">Analista de Crédito Senior</p>
                         
                         <div class="space-y-3 text-left bg-white p-5 rounded-2xl shadow-sm border border-gray-100">
@@ -348,9 +413,12 @@
         </div>
     </footer>
 
-    <!-- Lógica de la Encuesta y WhatsApp -->
+    <!-- ============================================ -->
+    <!-- JAVASCRIPT COMPATIBLE CON TODOS LOS DISPOSITIVOS -->
+    <!-- ============================================ -->
     <script>
-        let surveyData = {
+        // Variables globales
+        var surveyData = {
             has_cupo: '',
             amount: '',
             purpose: '',
@@ -360,67 +428,67 @@
             cc: ''
         };
 
+        // Función para manejar la selección de opciones
         function selectOption(key, value, nextStep) {
             surveyData[key] = value;
             
-            // Lógica inteligente de ramificación (Branching)
             if (key === 'has_cupo') {
-                if (value.startsWith('A.')) {
-                    // Flujo Normal: Tiene Cupo
+                if (value.indexOf('A.') === 0) {
                     document.getElementById('step-2-title').innerText = '2. ¿Cuánto tienes disponible actualmente en tu cupo?';
                     resetStep5Text();
                     goToStep(2);
-                } else if (value.startsWith('B.')) {
-                    // Flujo B: No tiene, quiere solicitar
+                } else if (value.indexOf('B.') === 0) {
                     document.getElementById('step-2-title').innerText = '2. ¿Qué monto te gustaría solicitar?';
                     resetStep5Text();
                     goToStep(2);
-                } else if (value.startsWith('C.')) {
-                    // Flujo C: No recuerda (Verificación directa)
+                } else if (value.indexOf('C.') === 0) {
                     document.getElementById('step-5-title').innerText = 'Verificación de Estado';
                     document.getElementById('step-5-desc').innerHTML = 'Completa tus datos para que tu asesor asignado <strong>verifique tu perfil en el sistema</strong> y evalúe la probabilidad de aprobación de tu cupo de forma segura.';
                     goToStep(5);
-                } else if (value.startsWith('D.')) {
-                    // Flujo D: Reportado (Rechazo empático)
+                } else if (value.indexOf('D.') === 0) {
                     goToStep('rejected');
                 }
             } else {
-                // Para las demás preguntas, sigue el flujo normal indicado
                 goToStep(nextStep);
             }
         }
 
-        // Función para resetear textos por si el usuario se devuelve
+        // Resetear textos del paso 5
         function resetStep5Text() {
-            document.getElementById('step-5-title').innerText = '5. Ingresa tus datos para continuar:';
-            document.getElementById('step-5-desc').innerText = 'Completa estos últimos datos para generar tu solicitud y pasarte con tu asesor por WhatsApp.';
+            var titleEl = document.getElementById('step-5-title');
+            var descEl = document.getElementById('step-5-desc');
+            if (titleEl) titleEl.innerText = '5. Ingresa tus datos para continuar:';
+            if (descEl) descEl.innerText = 'Completa estos últimos datos para generar tu solicitud y pasarte con tu asesor por WhatsApp.';
         }
 
-        // Lógica especial para el botón de "Volver" del Paso 5
+        // Volver desde el paso 5
         function goBackFrom5() {
-            if (surveyData.has_cupo.startsWith('C.')) {
-                // Si viene del flujo C (No recuerdo), debe volver al inicio porque saltó pasos
+            if (surveyData.has_cupo.indexOf('C.') === 0) {
                 goToStep(1);
             } else {
-                // Si viene de A o B, vuelve al paso del banco
                 goToStep(4);
             }
         }
 
+        // Navegación entre pasos
         function goToStep(step) {
-            document.querySelectorAll('.step-container').forEach(el => {
-                el.classList.remove('active-step');
-                el.classList.add('hidden-step');
-            });
+            var containers = document.querySelectorAll('.step-container');
+            for (var i = 0; i < containers.length; i++) {
+                var el = containers[i];
+                el.className = el.className.replace(/\bactive-step\b/g, '');
+                if (el.className.indexOf('hidden-step') === -1) {
+                    el.className += ' hidden-step';
+                }
+            }
             
-            const currentStepEl = document.getElementById(`step-${step}`);
-            if(currentStepEl) {
-                currentStepEl.classList.remove('hidden-step');
-                currentStepEl.classList.add('active-step');
+            var currentStepEl = document.getElementById('step-' + step);
+            if (currentStepEl) {
+                currentStepEl.className = currentStepEl.className.replace(/\bhidden-step\b/g, '');
+                currentStepEl.className += ' active-step';
             }
 
-            // Barra de progreso inteligente
-            let progress = 0;
+            // Actualizar barra de progreso
+            var progress = 0;
             if (step === 'rejected') progress = 100;
             else if (step === 1) progress = 20;
             else if (step === 2) progress = 40;
@@ -428,61 +496,111 @@
             else if (step === 4) progress = 80;
             else if (step === 5) progress = 100;
             
-            const progressBar = document.getElementById('progress-bar');
-            if(progressBar) {
-                progressBar.style.width = `${progress}%`;
+            var progressBar = document.getElementById('progress-bar');
+            if (progressBar) {
+                progressBar.style.width = progress + '%';
             }
         }
 
+        // Enviar a WhatsApp
         function submitToWhatsApp() {
-            const nameInput = document.getElementById('userName').value.trim();
-            const phoneInput = document.getElementById('userPhone').value.trim();
-            const ccInput = document.getElementById('userCC').value.trim();
+            var nameInput = document.getElementById('userName');
+            var phoneInput = document.getElementById('userPhone');
+            var ccInput = document.getElementById('userCC');
             
-            const errorMsg = document.getElementById('error-msg');
-            const btn = document.querySelector('button[onclick="submitToWhatsApp()"]');
+            var name = nameInput ? nameInput.value.trim() : '';
+            var phone = phoneInput ? phoneInput.value.trim() : '';
+            var cc = ccInput ? ccInput.value.trim() : '';
             
-            // Validación
-            if (!nameInput || !phoneInput || !ccInput) {
-                errorMsg.classList.remove('hidden');
+            var errorMsg = document.getElementById('error-msg');
+            var btn = document.getElementById('whatsapp-btn');
+            
+            if (!name || !phone || !cc) {
+                if (errorMsg) {
+                    errorMsg.className = errorMsg.className.replace(/\bhidden\b/g, '');
+                }
                 return;
             }
-            errorMsg.classList.add('hidden');
             
-            surveyData.name = nameInput;
-            surveyData.phone = phoneInput;
-            surveyData.cc = ccInput;
+            if (errorMsg) {
+                errorMsg.className += ' hidden';
+            }
+            
+            surveyData.name = name;
+            surveyData.phone = phone;
+            surveyData.cc = cc;
 
-            // Construir el resumen dinámico basado en lo que respondió en el paso 1
-            let summaryBlock = '';
-            if (surveyData.has_cupo.startsWith('A.')) {
-                summaryBlock = `1️⃣ *¿Tiene cupo?:* Sí\n2️⃣ *Monto disponible:* ${surveyData.amount}\n3️⃣ *Motivo:* ${surveyData.purpose}\n4️⃣ *Banco:* ${surveyData.bank}`;
-            } else if (surveyData.has_cupo.startsWith('B.')) {
-                summaryBlock = `1️⃣ *¿Tiene cupo?:* No, desea solicitar\n2️⃣ *Monto deseado:* ${surveyData.amount}\n3️⃣ *Motivo:* ${surveyData.purpose}\n4️⃣ *Banco:* ${surveyData.bank}`;
-            } else if (surveyData.has_cupo.startsWith('C.')) {
-                summaryBlock = `1️⃣ *¿Tiene cupo?:* No recuerda (Requiere verificación de probabilidad en sistema)`;
+            var summaryBlock = '';
+            if (surveyData.has_cupo.indexOf('A.') === 0) {
+                summaryBlock = '1️⃣ *¿Tiene cupo?:* Sí\n2️⃣ *Monto disponible:* ' + surveyData.amount + '\n3️⃣ *Motivo:* ' + surveyData.purpose + '\n4️⃣ *Banco:* ' + surveyData.bank;
+            } else if (surveyData.has_cupo.indexOf('B.') === 0) {
+                summaryBlock = '1️⃣ *¿Tiene cupo?:* No, desea solicitar\n2️⃣ *Monto deseado:* ' + surveyData.amount + '\n3️⃣ *Motivo:* ' + surveyData.purpose + '\n4️⃣ *Banco:* ' + surveyData.bank;
+            } else if (surveyData.has_cupo.indexOf('C.') === 0) {
+                summaryBlock = '1️⃣ *¿Tiene cupo?:* No recuerda (Requiere verificación de probabilidad en sistema)';
             }
 
-            // Construcción del mensaje final
-            const message = `¡Hola Carlos! (Cód: CM-7842) Vengo de la página web y quiero asesoría.\n\n*📋 Resumen de mi Solicitud:*\n\n${summaryBlock}\n\n*👤 Mis Datos:*\n- *Nombre:* ${surveyData.name}\n- *Celular:* ${surveyData.phone}\n- *Cédula (CC):* ${surveyData.cc}\n\nQuedo atento(a) para recibir tu llamada/mensaje.`;
+            var message = '¡Hola Carlos! (Cód: CM-7842) Vengo de la página web y quiero asesoría.\n\n*📋 Resumen de mi Solicitud:*\n\n' + summaryBlock + '\n\n*👤 Mis Datos:*\n- *Nombre:* ' + surveyData.name + '\n- *Celular:* ' + surveyData.phone + '\n- *Cédula (CC):* ' + surveyData.cc + '\n\nQuedo atento(a) para recibir tu llamada/mensaje.';
             
-            const encodedMessage = encodeURIComponent(message);
-            const phoneNumber = "573169487494"; // Número de celular actualizado
+            var encodedMessage = encodeURIComponent(message);
+            var phoneNumber = "573169487494"; // <-- CAMBIA ESTE NÚMERO POR EL TUYO
             
-            // Abrir WhatsApp automáticamente
-            const waUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodedMessage}`;
+            var waUrl = 'https://api.whatsapp.com/send?phone=' + phoneNumber + '&text=' + encodedMessage;
 
-            // Efecto visual de carga
-            const originalHTML = btn.innerHTML;
-            btn.innerHTML = '<i class="fas fa-spinner fa-spin text-2xl text-white"></i> Abriendo chat...';
-            btn.classList.add('bg-gray-800');
+            if (btn) {
+                var originalHTML = btn.innerHTML;
+                btn.innerHTML = '<i class="fas fa-spinner fa-spin text-2xl text-white"></i> Abriendo chat...';
+                btn.className += ' bg-gray-800';
+                
+                setTimeout(function() {
+                    btn.innerHTML = originalHTML;
+                    btn.className = btn.className.replace(/\bbg-gray-800\b/g, '');
+                    
+                    // Intentar abrir WhatsApp
+                    var waWindow = window.open(waUrl, '_blank');
+                    if (!waWindow || waWindow.closed || typeof waWindow.closed == 'undefined') {
+                        window.location.href = waUrl;
+                    }
+                }, 800);
+            }
+        }
 
-            setTimeout(() => {
-                btn.innerHTML = originalHTML;
-                btn.classList.remove('bg-gray-800');
-                window.open(waUrl, '_blank');
-            }, 800);
+        // Inicialización: Asignar eventos a todos los botones de la encuesta
+        document.addEventListener('DOMContentLoaded', function() {
+            // Asignar eventos a los botones con clase survey-btn
+            var buttons = document.querySelectorAll('.survey-btn');
+            for (var i = 0; i < buttons.length; i++) {
+                (function(btn) {
+                    btn.addEventListener('click', function(e) {
+                        var key = this.getAttribute('data-key');
+                        var value = this.getAttribute('data-value');
+                        var next = this.getAttribute('data-next');
+                        
+                        if (key && value) {
+                            selectOption(key, value, next);
+                        }
+                    });
+                })(buttons[i]);
+            }
+            
+            // Asignar evento al botón de WhatsApp
+            var waBtn = document.getElementById('whatsapp-btn');
+            if (waBtn) {
+                waBtn.addEventListener('click', function(e) {
+                    submitToWhatsApp();
+                });
+            }
+            
+            // Asegurar que el paso 1 esté visible
+            goToStep(1);
+        });
+
+        // Soporte para navegadores muy antiguos
+        if (!document.addEventListener) {
+            window.attachEvent('onload', function() {
+                // Fallback para IE antiguo
+            });
         }
     </script>
+
 </body>
 </html>
